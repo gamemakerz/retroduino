@@ -1,11 +1,13 @@
 #include "gengine.h"
 
-Graphics::Graphics() {
+void Graphics::begin() {
    lcd.begin(84, 48);
 }
 
 void Graphics::set_cell(int row, int col, int new_bit) {
-
+  if(row >= 48 || col >= 84)
+    return;
+    
    int byte_index = col + 84*(row/8);
    int bit_index = row % 8;
    int bit_mask = 1 << bit_index;
@@ -29,6 +31,7 @@ void Graphics::flush() {
 }
 
 void Graphics::clear() {
+  memset(data, 0, sizeof(data));
   lcd.clear();
 }
 

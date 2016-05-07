@@ -16,7 +16,7 @@ private:
    PCD8544 lcd;
 
 public:
-   Graphics();
+   void begin();
    void set_cell(int row, int col, int new_bit);
    int get_cell(int row, int col);
    void flush();
@@ -32,11 +32,11 @@ private:
    const short pins[KEYS_COUNT] = {11, 12};
    
    // last time a button was observed to be pressed
-   long int down_times[KEYS_COUNT];
+   unsigned long int down_times[KEYS_COUNT];
 
 public:
 
-   Controls();
+   void begin();
    void on_tick();
    int is_key_down(short key);
 };

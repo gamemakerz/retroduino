@@ -2,13 +2,15 @@
 #include "gengine.h"
 
 static Graphics g;
+static Controls c;
 
 void setup() {
+  Serial.begin(9600);
+  g.begin();
+  c.begin();
 }
 
 void loop() {
-  
-  g.text("Hello, world!", 0, 0);
-  delay(3000);
-  g.flush();
+
 }
+
