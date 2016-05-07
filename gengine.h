@@ -8,6 +8,8 @@
 #define KEYS_COUNT 2
 #define K_LEFT 0
 #define K_RIGHT 1
+#define EVENT_PRESS 0
+#define EVENT_RELEASE 1
 
 class Graphics {
 
@@ -17,28 +19,46 @@ private:
 
 public:
    void begin();
-   void set_cell(int row, int col, int new_bit);
-   int get_cell(int row, int col);
+   void set_cell(byte row, byte col, byte new_bit);
+   int get_cell(byte row, byte col);
    void flush();
    void clear();
-   void text(const char *str, int row, int col);
+   void text(const char *str, byte row, byte col);
 
    unsigned char* getData() { return data; }
 };
 
-class Controls {
-private:
-   // a key-to-pin mapping
-   const short pins[KEYS_COUNT] = {11, 12};
-   
-   // last time a button was observed to be pressed
-   unsigned long int down_times[KEYS_COUNT];
-
+class Entity {
+  
 public:
-
-   void begin();
-   void on_tick();
-   int is_key_down(short key);
+  void on_init();
+  void on_tick();
+  void on_repaint(Graphics *p_g);
+  void on_input(byte key, byte event);
 };
+
+class Controls {
+  
+  // will be notified of input events
+  Entity *p_player;
+  
+  // a key-to-pin mapping
+  const byte pins[KEYS_COUNT] = {11, 12};
+   
+  // last time a button was observed to be pressed
+  unsigned long int down_times[KEYS_COUNT];
+
+  // keeps track of keys that are (or were recently) pressed
+  byte debounced_states[KEYS_COUNT];
+   
+public:
+  
+  Controls(Entity *p_player);
+  
+  void begin();
+  void on_tick();
+  int is_key_down(byte key);
+};
+
 
 #endif
