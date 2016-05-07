@@ -13,7 +13,7 @@ public:
    Graphics();
    void set_cell(int row, int col, int new_bit);
    int get_cell(int row, int col);
-   void repaint();
+   void flush();
    void clear();
    void text(const char *str, int row, int col);
 

@@ -10,5 +10,5 @@ void loop() {
   
   g.text("Hello, world!", 0, 0);
   delay(3000);
-  g.repaint();
+  g.flush();
 }

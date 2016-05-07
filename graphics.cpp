@@ -24,7 +24,7 @@ int Graphics::get_cell(int row, int col) {
    return (data[byte_index] & bit_mask)?1:0;
 }
 
-void Graphics::repaint() {
+void Graphics::flush() {
    lcd.drawBitmap(data, 84, 48);
 }
 
