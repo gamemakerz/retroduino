@@ -3,6 +3,12 @@
 
 #include <PCD8544.h>
 
+// Controls macros
+#define BOUNCE_DELAY 50
+#define KEYS_COUNT 2
+#define K_LEFT 0
+#define K_RIGHT 1
+
 class Graphics {
 
 private:
@@ -18,6 +24,21 @@ public:
    void text(const char *str, int row, int col);
 
    unsigned char* getData() { return data; }
+};
+
+class Controls {
+private:
+   // a key-to-pin mapping
+   const short pins[KEYS_COUNT] = {11, 12};
+   
+   // last time a button was observed to be pressed
+   long int down_times[KEYS_COUNT];
+
+public:
+
+   Controls();
+   void on_tick();
+   int is_key_down(short key);
 };
 
 #endif
