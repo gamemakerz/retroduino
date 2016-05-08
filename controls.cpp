@@ -21,10 +21,12 @@ void Controls::on_tick() {
 
       byte new_debounced_state = is_key_down(i);
 
-      if(new_debounced_state > debounced_states[i])
-         p_player->on_input(i, EVENT_PRESS);
-      else if(new_debounced_state < debounced_states[i])
-         p_player->on_input(i, EVENT_RELEASE);
+      if(p_player) {
+         if(new_debounced_state > debounced_states[i])
+            p_player->on_input(i, EVENT_PRESS);
+         else if(new_debounced_state < debounced_states[i])
+            p_player->on_input(i, EVENT_RELEASE);
+      }
 
       debounced_states[i] = new_debounced_state;
    }

@@ -1,9 +1,8 @@
 #include <PCD8544.h>
 #include "gengine.h"
 
-static Entity player;
 static Graphics g;
-static Controls c(&player);
+static Controls c(NULL);
 
 void setup() {
    Serial.begin(9600);

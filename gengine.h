@@ -31,10 +31,11 @@ public:
 class Entity {
 
 public:
-   void on_init();
-   void on_tick();
-   void on_render(Graphics *p_g);
-   void on_input(byte key, byte event);
+   virtual void on_init() = 0;
+   virtual void on_tick() = 0;
+   virtual void on_render(Graphics *p_g) = 0;
+   virtual void on_input(byte key, byte event) = 0;
+   virtual void on_destroy() = 0;
 };
 
 class Controls {
