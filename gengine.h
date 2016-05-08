@@ -33,7 +33,7 @@ class Entity {
 public:
    void on_init();
    void on_tick();
-   void on_repaint(Graphics *p_g);
+   void on_render(Graphics *p_g);
    void on_input(byte key, byte event);
 };
 
