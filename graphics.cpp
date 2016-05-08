@@ -5,9 +5,9 @@ void Graphics::begin() {
 }
 
 void Graphics::set_cell(byte row, byte col, byte new_bit) {
-  if(row >= 48 || col >= 84)
-    return;
-    
+   if(row >= 48 || col >= 84)
+      return;
+
    int byte_index = col + 84*(row/8);
    int bit_index = row % 8;
    int bit_mask = 1 << bit_index;
@@ -17,7 +17,7 @@ void Graphics::set_cell(byte row, byte col, byte new_bit) {
    else
       data[byte_index] &= ~bit_mask; // off
 }
- 
+
 int Graphics::get_cell(byte row, byte col) {
    int byte_index = col + 84*(row/8);
    int bit_index = row % 8;
@@ -31,11 +31,11 @@ void Graphics::flush() {
 }
 
 void Graphics::clear() {
-  memset(data, 0, sizeof(data));
-  lcd.clear();
+   memset(data, 0, sizeof(data));
+   lcd.clear();
 }
 
 void Graphics::text(const char *str, byte row, byte col) {
-  lcd.setCursor(col, row);
-  lcd.print(str);
+   lcd.setCursor(col, row);
+   lcd.print(str);
 }

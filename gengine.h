@@ -29,35 +29,35 @@ public:
 };
 
 class Entity {
-  
+
 public:
-  void on_init();
-  void on_tick();
-  void on_repaint(Graphics *p_g);
-  void on_input(byte key, byte event);
+   void on_init();
+   void on_tick();
+   void on_repaint(Graphics *p_g);
+   void on_input(byte key, byte event);
 };
 
 class Controls {
-  
-  // will be notified of input events
-  Entity *p_player;
-  
-  // a key-to-pin mapping
-  const byte pins[KEYS_COUNT] = {11, 12};
-   
-  // last time a button was observed to be pressed
-  unsigned long int down_times[KEYS_COUNT];
 
-  // keeps track of keys that are (or were recently) pressed
-  byte debounced_states[KEYS_COUNT];
-   
+   // will be notified of input events
+   Entity *p_player;
+
+   // a key-to-pin mapping
+   const byte pins[KEYS_COUNT] = {11, 12};
+
+   // last time a button was observed to be pressed
+   unsigned long int down_times[KEYS_COUNT];
+
+   // keeps track of keys that are (or were recently) pressed
+   byte debounced_states[KEYS_COUNT];
+
 public:
-  
-  Controls(Entity *p_player);
-  
-  void begin();
-  void on_tick();
-  int is_key_down(byte key);
+
+   Controls(Entity *p_player);
+
+   void begin();
+   void on_tick();
+   int is_key_down(byte key);
 };
 
 
