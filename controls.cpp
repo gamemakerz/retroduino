@@ -1,7 +1,7 @@
 #include "gengine.h"
 
-Controls::Controls(Entity *p_player) {
-   this->p_player = p_player;
+Controls::Controls(Entity *p_listener) {
+   this->p_listener = p_listener;
 }
 
 void Controls::begin() {
@@ -21,11 +21,11 @@ void Controls::on_tick() {
 
       byte new_debounced_state = is_key_down(i);
 
-      if(p_player) {
+      if(p_listener) {
          if(new_debounced_state > debounced_states[i])
-            p_player->on_input(i, EVENT_PRESS);
+            p_listener->on_input(i, EVENT_PRESS);
          else if(new_debounced_state < debounced_states[i])
-            p_player->on_input(i, EVENT_RELEASE);
+            p_listener->on_input(i, EVENT_RELEASE);
       }
 
       debounced_states[i] = new_debounced_state;

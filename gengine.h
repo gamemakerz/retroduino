@@ -41,7 +41,7 @@ public:
 class Controls {
 
    // will be notified of input events
-   Entity *p_player;
+   Entity *p_listener;
 
    // a key-to-pin mapping
    const byte pins[KEYS_COUNT] = {11, 12};
