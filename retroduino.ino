@@ -12,6 +12,16 @@ void setup() {
    Serial.begin(9600);
    g.begin();
    c.begin();
+   g.text("RETRODUINO",1,10);
+   while (true){
+    if (c.is_key_down(K_LEFT)||c.is_key_down(K_RIGHT) ){
+      
+      break;
+      
+      }
+    
+    }
+   g.clear();
 
    // init all entities
    ball.on_init();
