@@ -1,36 +1,48 @@
 #include <PCD8544.h>
 #include "gengine.h"
+#include "ball.h"
 
+#define MS_PER_FRAME (100)
+
+static Ball ball;
 static Graphics g;
-static Controls c(NULL);
+static Controls c(&ball);
 
 void setup() {
    Serial.begin(9600);
    g.begin();
    c.begin();
-}
 
-int pos = 0;
+   // init all entities
+   ball.on_init();
+}
 
 unsigned long int last_tick = 0;
 unsigned long int last_repaint = 0;
 
 void loop() {
-   c.on_tick();
-   g.set_cell(20, pos, 0);
 
-   if(millis() - last_tick > 25) {
-      if(c.is_key_down(K_RIGHT))
-         pos++;
+  unsigned long int last_tick = 0;
 
+  // GAME LOOP
+  while(true) {
+    c.on_cycle();
+
+    // if the last tick it too old
+    if(millis() - last_tick > MS_PER_FRAME) {
+
+      // clear screen by unrendering all entities
+      ball.on_render(&g, 0);
+      
+      // tick all entities
+      ball.on_tick();
+
+      // render all entities
+      ball.on_render(&g, 1);
+
+      // keep track when the last tick was executed
       last_tick = millis();
-   }
-
-   g.set_cell(20, pos, 1);
-
-   if(millis() - last_repaint > 100) {
-      g.flush();
-      last_repaint = millis();
-   }
+    }
+  }
 }
 

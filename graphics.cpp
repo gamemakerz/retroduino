@@ -16,6 +16,10 @@ void Graphics::set_cell(byte row, byte col, byte new_bit) {
       data[byte_index] |= bit_mask; // on
    else
       data[byte_index] &= ~bit_mask; // off
+
+   lcd.setCursor(col, row/8);
+   unsigned char bitmap[] = {data[byte_index]};
+   lcd.drawBitmap(bitmap, 1, 1);
 }
 
 int Graphics::get_cell(byte row, byte col) {
@@ -27,7 +31,8 @@ int Graphics::get_cell(byte row, byte col) {
 }
 
 void Graphics::flush() {
-   lcd.drawBitmap(data, 84, 48);
+  lcd.setCursor(0, 0);
+  lcd.drawBitmap(data, 84, 48);
 }
 
 void Graphics::clear() {

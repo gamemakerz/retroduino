@@ -12,15 +12,15 @@ void Controls::begin() {
    }
 }
 
-void Controls::on_tick() {
+void Controls::on_cycle() {
 
-   for(int i=0; i<KEYS_COUNT; i++) {
+   for(byte i=0; i<KEYS_COUNT; i++) {
 
       if(digitalRead(pins[i]) == HIGH)
          down_times[i] = millis();
 
       byte new_debounced_state = is_key_down(i);
-
+      
       if(p_listener) {
          if(new_debounced_state > debounced_states[i])
             p_listener->on_input(i, EVENT_PRESS);
@@ -32,7 +32,7 @@ void Controls::on_tick() {
    }
 }
 
-int Controls::is_key_down(byte key) {
+byte Controls::is_key_down(byte key) {
    if(key < 0 || key >= KEYS_COUNT)
       return 0;
 

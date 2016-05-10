@@ -33,7 +33,7 @@ class Entity {
 public:
    virtual void on_init() = 0;
    virtual void on_tick() = 0;
-   virtual void on_render(Graphics *p_g) = 0;
+   virtual void on_render(Graphics *p_g, byte value) = 0;
    virtual void on_input(byte key, byte event) = 0;
    virtual void on_destroy() = 0;
 };
@@ -57,8 +57,8 @@ public:
    Controls(Entity *p_player);
 
    void begin();
-   void on_tick();
-   int is_key_down(byte key);
+   void on_cycle();
+   byte is_key_down(byte key);
 };
 
 
