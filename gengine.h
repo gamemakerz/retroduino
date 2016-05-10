@@ -61,5 +61,19 @@ public:
    byte is_key_down(byte key);
 };
 
+// The abstract game class
+class Game {
+  public:
+
+    // Calls Tick() and Render(), keeping a constant FPS
+    int loop() {
+      tick();
+      render();
+    }
+    
+    // Abstract functions
+    virtual void tick() = 0;
+    virtual void render() = 0;
+};
 
 #endif
