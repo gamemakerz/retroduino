@@ -8,13 +8,22 @@ void Ball::on_init() {
 }
 
 void Ball::on_tick() {
-  col += 5*direction;
+  col += 6*direction;
+  if(col >= 80)
+  {
+    col = 80;
+  }
+  else if (col <=8)
+  {
+    col = 8;
+  }
 }
 
 void Ball::on_render(Graphics *p_g, byte value) {
   for(int r = -2; r <=2; r++) {
     for(int c = -2; c<=2; c++) {
       p_g->set_cell(row+r, col+c, value);
+      
     }
   }
 }
@@ -28,5 +37,9 @@ void Ball::on_input(byte key, byte event) {
 
 void Ball::on_destroy () {
   
+}
+byte Ball::get_col()
+{
+  return col;
 }
 

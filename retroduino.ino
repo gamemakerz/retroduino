@@ -3,11 +3,12 @@
 #include "ball.h"
 #include "obstacles.h"
 
-#define MS_PER_FRAME (100)
+#define MS_PER_FRAME (5)
 
 static Ball ball;
-static Obstacles obt1;
-static Obstacles obt2;
+static Obstacles obt1(0, &ball);
+static Obstacles obt2(15, &ball);
+static Obstacles obt3(30, &ball);
 static Graphics g;
 static Controls c(&ball);
 
@@ -27,8 +28,6 @@ void setup() {
 
    // init all entities
    ball.on_init();
-   obt1.on_init();
-   obt2.on_init();
 }
 
 void loop() {
@@ -45,15 +44,18 @@ void loop() {
       ball.on_render(&g, 0);
       obt1.on_render(&g, 0);
       obt2.on_render(&g, 0);
+      obt3.on_render(&g, 0);
       
       // tick all entities
       ball.on_tick();
       obt1.on_tick();
       obt2.on_tick();
+      obt3.on_tick();
       // render all entities
       ball.on_render(&g, 1);
       obt1.on_render(&g, 1);
       obt2.on_render(&g, 1);
+      obt3.on_render(&g, 1);
 
       // keep track when the last tick was executed
       last_tick = millis();
