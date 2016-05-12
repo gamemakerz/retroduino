@@ -7,11 +7,13 @@ Obstacles::Obstacles(byte Row,Ball* p_ball)
  row = Row;
  //on_init(); 
  start = random(64);
+   time_before = millis();
 }
 void Obstacles::on_init(){
   //col = 20;
   row = 5;
   start = random(64);
+
 }
 
 void Obstacles::on_tick(){
@@ -39,7 +41,14 @@ void Obstacles::on_render(Graphics *p_g, byte value){
     if(isGameOver == true)
     {
       //p_g->clear();
+      time_after= millis();
+      int score = (time_after - time_before)/1000;
       p_g->text("GAME OVER!",1,10);
+      char buffer[25];
+      sprintf(buffer, "Score: %d", score);
+      
+      p_g->text(buffer,3,10);
+     
       delay(4000);
       resetFunc();
     }
@@ -54,6 +63,8 @@ void Obstacles::on_render(Graphics *p_g, byte value){
         }
       }*/
       p_g->set_cell(row, start+i,value);
+      p_g->set_cell(row - 1, start+i,value);
+    
       
     }
 }

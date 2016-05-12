@@ -17,9 +17,6 @@ void Graphics::set_cell(byte row, byte col, byte new_bit) {
    else
       data[byte_index] &= ~bit_mask; // off
 
-   lcd.setCursor(col, row/8);
-   unsigned char bitmap[] = {data[byte_index]};
-   lcd.drawBitmap(bitmap, 1, 1);
 }
 
 int Graphics::get_cell(byte row, byte col) {

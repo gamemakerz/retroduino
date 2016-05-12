@@ -37,14 +37,17 @@ void loop() {
   while(true) {
     c.on_cycle();
 
-    // if the last tick it too old
+    // if the last tick is too old
     if(millis() - last_tick > MS_PER_FRAME) {
 
       // clear screen by unrendering all entities
+      /*
       ball.on_render(&g, 0);
       obt1.on_render(&g, 0);
       obt2.on_render(&g, 0);
       obt3.on_render(&g, 0);
+      */
+      g.clear();
       
       // tick all entities
       ball.on_tick();
@@ -57,6 +60,7 @@ void loop() {
       obt2.on_render(&g, 1);
       obt3.on_render(&g, 1);
 
+      g.flush();
       // keep track when the last tick was executed
       last_tick = millis();
     }

@@ -1,6 +1,8 @@
 #include "gengine.h"
 #include "ball.h"
 class Obstacles: public Entity { 
+  unsigned long int time_before;
+  unsigned long int time_after;
   byte row;
   byte start;
   bool isGameOver=false;
