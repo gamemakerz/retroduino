@@ -1,0 +1,3 @@
+# retroduino
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gamemakerz/retroduino/master/LICENSE)
+I ain't got an arduino right now, not sure if all the stuff is gonna work. Lelz...
